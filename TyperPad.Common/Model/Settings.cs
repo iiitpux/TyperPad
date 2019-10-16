@@ -8,6 +8,7 @@ namespace TyperPad.Common.Model
     public class Settings
     {
         public List<KeyItem> Keys { private set; get; }
+        public List<KeyItem> ModificatorKeys { private set; get; }
         public List<LevelToInputState> Levels { private set; get; }
         public List<StickSector> LeftStick { private set; get; }
         public List<StickSector> RightStick { private set; get; }
@@ -15,7 +16,8 @@ namespace TyperPad.Common.Model
         public Settings(List<KeyItem> keys, List<LevelToInputState> levels, List<StickSector> leftStick,
             List<StickSector> rightStick)
         {
-            Keys = keys;
+            Keys = keys.Where(p=>!p.Key.IsModificator).ToList();
+            ModificatorKeys = keys.Where(p=>p.Key.IsModificator).ToList();
             Levels = levels;
             LeftStick = leftStick;
             RightStick = rightStick;
@@ -27,6 +29,25 @@ namespace TyperPad.Common.Model
             public Guid? StickSectorId { set; get; }
             public List<EButton> Buttons { set; get; }
             public int LevelIndex { set; get; }
+
+            private List<string> _pattern = null;
+
+            public List<string> Pattern
+            {
+                get
+                {
+                    if (_pattern == null)
+                    {
+                        _pattern = new List<string>();
+                        if (Buttons != null && Buttons.Any())
+                            _pattern.AddRange(Buttons.Select(p => p.ToString()));
+                        if (StickSectorId.HasValue)
+                            _pattern.Add(StickSectorId.Value.ToString());
+                    }
+
+                    return _pattern;
+                }
+            }
         }
 
 

@@ -141,7 +141,7 @@ namespace TyperPad.Common.Helper
                 Level = new Level(0),
                 Buttons = new List<EButton>()
                 {
-                    EButton.LSecond
+                    
                 }
             });
             levelToInputState.Add(new LevelToInputState()
@@ -157,7 +157,7 @@ namespace TyperPad.Common.Helper
                 Level = new Level(2),
                 Buttons = new List<EButton>()
                 {
-                    EButton.RFirst
+                    EButton.LSecond
                 }
             });
             levelToInputState.Add(new LevelToInputState()
@@ -165,7 +165,8 @@ namespace TyperPad.Common.Helper
                 Level = new Level(3),
                 Buttons = new List<EButton>()
                 {
-                    EButton.LFirst
+                    EButton.LSecond,
+                    EButton.RSecond
                 }
             });
             return levelToInputState;

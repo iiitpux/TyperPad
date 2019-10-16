@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\TyperPad.Common\TyperPad.Common.csproj" />
+      <ProjectReference Include="..\TyperPad.Core\TyperPad.Core.csproj" />
+      <ProjectReference Include="..\TyperPad.Fake\TyperPad.Fake.csproj" />
+    </ItemGroup>
+
+</Project>
