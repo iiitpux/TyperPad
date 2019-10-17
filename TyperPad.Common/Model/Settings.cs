@@ -54,8 +54,8 @@ namespace TyperPad.Common.Model
         public class StickSector
         {
             public Guid Id { set; get; }
-            public int MinAngle { set; get; }
-            public int MaxAngle { set; get; }
+            public Angle MinAngle { set; get; }
+            public Angle MaxAngle { set; get; }
             public int MinLength { set; get; }
             public int MaxLength { set; get; }
         }

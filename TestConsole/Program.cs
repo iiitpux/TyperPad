@@ -1,6 +1,7 @@
 ﻿using System;
 using TyperPad.Core;
 using TyperPad.Fake;
+using TyperPad.SharpDxInput;
 
 namespace TestConsole
 {
@@ -8,7 +9,8 @@ namespace TestConsole
     {
         static void Main(string[] args)
         {
-            var service = new Service(new FakeInputService(), new FakeOutputService(), null);
+            var service = new Service(new InputService(),  new FakeOutputService(), null);
+            service.Init();
             service.Run();
             Console.ReadLine();
             service.Stop();

@@ -13,7 +13,7 @@ namespace TyperPad.Common.Model
 
         public class Stick
         {
-            public int Angle { set; get; }
+            public Angle Angle { set; get; }
             public int Length { set; get; }
         }
     }

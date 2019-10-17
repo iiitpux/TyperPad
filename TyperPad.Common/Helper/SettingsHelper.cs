@@ -67,10 +67,10 @@ namespace TyperPad.Common.Helper
                 //todo тут нужен не левелтуинпут а просто левел
                 if (keys.Item1.ContainsKey(level.Level.Index))
                 {
-                    var leftKeyItem = GetKeyItem(keys.Item1[level.Level.Index], leftStick);
+                    var leftKeyItem = GetKeyItem(keys.Item1[level.Level.Index], leftStick, level.Level.Index);
                     result.AddRange(leftKeyItem);
 
-                    var rightKeyItem = GetKeyItem(keys.Item2[level.Level.Index], rightStick);
+                    var rightKeyItem = GetKeyItem(keys.Item2[level.Level.Index], rightStick, level.Level.Index);
                     result.AddRange(rightKeyItem);
                 }
             }
@@ -78,7 +78,7 @@ namespace TyperPad.Common.Helper
             return result;
         }
 
-        private static List<KeyItem> GetKeyItem(Key[,] keys, List<StickSector> stickSectors)
+        private static List<KeyItem> GetKeyItem(Key[,] keys, List<StickSector> stickSectors, int levelIndex)
         {
             var result = new List<KeyItem>();
             int rows = keys.GetUpperBound(0) + 1;
@@ -93,17 +93,18 @@ namespace TyperPad.Common.Helper
                         continue;
 
                     var angle = GetAngleByPosition(i, j);
-                    if (!angle.HasValue)
+                    if (angle==null)
                         continue;
 
-                    var stick = stickSectors.SingleOrDefault(p => p.MinAngle < angle && p.MaxAngle > angle);
+                    var stick = stickSectors.SingleOrDefault(p => angle.IsBetween(p.MinAngle, p.MaxAngle));
                     if (stick == null)
                         continue;
 
                     result.Add(new KeyItem()
                     {
                         Key = currentKey,
-                        StickSectorId = stick.Id
+                        StickSectorId = stick.Id,
+                        LevelIndex = levelIndex
                     });
                 }
             }
@@ -122,8 +123,8 @@ namespace TyperPad.Common.Helper
                 result.Add(new StickSector()
                 {
                     Id = guid,
-                    MinAngle = minAngle,
-                    MaxAngle = maxAngle,
+                    MinAngle = new Angle(minAngle),
+                    MaxAngle = new Angle(maxAngle),
                     MinLength = stickMinLength,
                     MaxLength = stickMaxLength
                 });
@@ -172,13 +173,14 @@ namespace TyperPad.Common.Helper
             return levelToInputState;
         }
 
-        private static int? GetAngleByPosition(int row, int column)
+        private static Angle? GetAngleByPosition(int row, int column)
         {
-            var angles = new int[,]
+            var angles = new Angle[,]
             {
-                {-45, 0, 45},
-                {270, 0, 90},
-                {225, 180, 135}
+                {new Angle(315), new Angle(0), new Angle(45) },
+                {new Angle(270), null, new Angle(90)},
+                {new Angle(225), new Angle(180), new Angle(135)},
+
             };
 
             if (row > angles.GetUpperBound(0) + 1 || column > angles.GetUpperBound(1) + 1)

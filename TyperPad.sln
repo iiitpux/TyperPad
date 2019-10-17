@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TyperPad.Core", "TyperPad.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "TestConsole\TestConsole.csproj", "{464A6C93-341C-424A-A9F0-80BCD741D23F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TyperPad.SharpDxInput", "TyperPad.SharpDxInput\TyperPad.SharpDxInput.csproj", "{DE789BCE-5A32-45AD-AA89-95A74DA7ABE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{464A6C93-341C-424A-A9F0-80BCD741D23F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{464A6C93-341C-424A-A9F0-80BCD741D23F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{464A6C93-341C-424A-A9F0-80BCD741D23F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE789BCE-5A32-45AD-AA89-95A74DA7ABE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE789BCE-5A32-45AD-AA89-95A74DA7ABE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE789BCE-5A32-45AD-AA89-95A74DA7ABE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE789BCE-5A32-45AD-AA89-95A74DA7ABE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

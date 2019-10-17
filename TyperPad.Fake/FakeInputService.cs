@@ -18,8 +18,8 @@ namespace TyperPad.Fake
                 },
                 LeftStick = new InputState.Stick()
                 {
-                    Angle = 0,
-                    Length = 2000
+                    Angle =  new Angle(1),
+                    Length = 20000
                 },
                 RightStick = new InputState.Stick()
             };
