@@ -7,6 +7,7 @@ namespace TyperPad.Common.Interface
 {
     public interface IOutput
     {
+        void Init();
         void Send(OutputState state);
     }
 }

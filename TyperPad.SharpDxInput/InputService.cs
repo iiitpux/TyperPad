@@ -9,11 +9,6 @@ namespace TyperPad.SharpDxInput
 {
     public class InputService : IInput
     {
-        public InputService() //todo remove init
-        {
-            Init();
-        }
-
         private Joystick _joystick = null;
         private bool _isInit = false;
 
@@ -68,30 +63,42 @@ namespace TyperPad.SharpDxInput
             _joystick.Poll();
             var state = _joystick.GetCurrentState();
 
-            var x = state.X - 32787;
-            var y = state.Y - 32787;
-            InputState.Stick leftStick = new InputState.Stick()
+            var x = state.X - 32787;//todo const
+            var y = state.Y - 32787;//todo const
+            var leftStick = new InputState.Stick()
             {
                 Angle = new Angle(0),
                 Length = 0
             };
 
             var length = (int) Math.Sqrt(x * x + y * y);
-            if (length>1000)
+            if (length>1000)//todo const
             {
-                int angle = (int)(Math.Atan2(-y, -x) * 180 / Math.PI + 180);
-                angle = angle + 90;
-                if (angle > 360)
-                    angle = angle - 360;
-                
-                leftStick.Angle = new Angle(angle);
+                int angle = (int)(Math.Atan2(y, x) * 180 / Math.PI);
+                leftStick.Angle = new Angle(angle+90);
                 leftStick.Length = length;
+            }
+
+            x = state.Z - 32787;//todo const
+            y = state.RotationZ - 32787;//todo const
+            var rightStick = new InputState.Stick()
+            {
+                Angle = new Angle(0),
+                Length = 0
+            };
+            length = (int) Math.Sqrt(x * x + y * y);
+            if (length>1000)//todo const
+            {
+                int angle = (int)(Math.Atan2(y, x) * 180 / Math.PI);
+                rightStick.Angle = new Angle(angle+90);
+                rightStick.Length = length;
             }
 
             return new InputState()
             {
                 Buttons = new List<EButton>(),
-                LeftStick = leftStick
+                LeftStick = leftStick,
+                RightStick = rightStick
             };
         }
     }

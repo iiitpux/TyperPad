@@ -30,8 +30,10 @@ namespace TyperPad.Core
             _dataStore = dataStore;
         }
 
-        public void Init()
+        public void Init()//todo async
         {
+            _input.Init();
+            _output.Init();
             //todo- работа с базой
             //_settings = _dataStore.GetSettings();
 

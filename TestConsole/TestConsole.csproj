@@ -9,6 +9,7 @@
       <ProjectReference Include="..\TyperPad.Common\TyperPad.Common.csproj" />
       <ProjectReference Include="..\TyperPad.Core\TyperPad.Core.csproj" />
       <ProjectReference Include="..\TyperPad.Fake\TyperPad.Fake.csproj" />
+      <ProjectReference Include="..\TyperPad.InputSimulatorOutput\TyperPad.InputSimulatorOutput.csproj" />
       <ProjectReference Include="..\TyperPad.SharpDxInput\TyperPad.SharpDxInput.csproj" />
     </ItemGroup>
 

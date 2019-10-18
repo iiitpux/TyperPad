@@ -8,6 +8,7 @@ namespace TyperPad.Common.Interface
 {
     public interface IInput
     {
+        void Init();
         InputState GetState();
     }
 }

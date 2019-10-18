@@ -4,7 +4,7 @@ namespace TyperPad.Common.Model
 {
     public class Angle
     {
-        private int _angle;
+        private readonly int _angle;
 
         public Angle(double input)
         {
