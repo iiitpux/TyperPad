@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using TyperPad.Common.Enum;
 using TyperPad.Common.Interface;
@@ -8,11 +9,12 @@ namespace TyperPad.Fake
 {
     public class FakeInputService : IInput
     {
-        public void Init()
+        public Guid? Init()
         {
+            return Guid.NewGuid();
         }
 
-        public InputState GetState()
+        public InputState GetState(Settings.GamepadSettings settings)
         {
             Thread.Sleep(10000);
             return new InputState()
@@ -28,6 +30,11 @@ namespace TyperPad.Fake
                 },
                 RightStick = new InputState.Stick()
             };
+        }
+
+        public InputRawState GetRawState()
+        {
+            throw new NotImplementedException();
         }
     }
 }

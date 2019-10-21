@@ -32,13 +32,18 @@ namespace TyperPad.Core
 
         public void Init()//todo async
         {
-            _input.Init();
+            var gamepadGuid = _input.Init();
+            if(!gamepadGuid.HasValue)
+                throw new Exception("Gamepad not connected");
+            
             _output.Init();
             //todo- работа с базой
-            //_settings = _dataStore.GetSettings();
+
+            _dataStore.Init();
+            _settings = _dataStore.GetSettings();
 
             if (_settings == null)
-                _settings = SettingsHelper.GetDefaultSettings(10000, 50000);//todo calibrate controller
+                _settings = SettingsHelper.GetDefaultSettings(30000, 50000);//todo calibrate controller
 
             //todo- Отписку сделать
             OnKeyDown += (key, modificators) => _output.Send(new OutputState()
@@ -60,7 +65,7 @@ namespace TyperPad.Core
             _isRunning = true;
             while (_isRunning)
             {
-                var inputState = _input.GetState(); //todo
+                var inputState = _input.GetState(_settings.Gamepad); //todo
                 //todo uncomment
                 var outputState = GetOutputState(inputState);
                 if (outputState != null)

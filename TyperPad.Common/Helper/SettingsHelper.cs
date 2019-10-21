@@ -33,29 +33,54 @@ namespace TyperPad.Common.Helper
 
             keys.Add(new KeyItem()
             {
-                Buttons = new List<EButton>() { EButton.A },
+                Buttons = new List<EButton>() {EButton.A},
                 LevelIndex = 0,
                 Key = Key.Alt
             });
             keys.Add(new KeyItem()
             {
-                Buttons = new List<EButton>() { EButton.B },
+                Buttons = new List<EButton>() {EButton.B},
                 LevelIndex = 0,
                 Key = Key.Control
             });
             keys.Add(new KeyItem()
             {
-                Buttons = new List<EButton>() { EButton.X },
+                Buttons = new List<EButton>() {EButton.X},
                 LevelIndex = 0,
                 Key = Key.Win
             });
             keys.Add(new KeyItem()
             {
-                Buttons = new List<EButton>() { EButton.Y },
+                Buttons = new List<EButton>() {EButton.Y},
                 LevelIndex = 0,
                 Key = Key.Shift
             });
-            return new Settings(keys, levels, leftStick, rightStick);
+            var gamepadButtons = new Dictionary<int, EButton>();
+            gamepadButtons.Add(0, EButton.A);
+            gamepadButtons.Add(1, EButton.B);
+            gamepadButtons.Add(3, EButton.X);
+            gamepadButtons.Add(4, EButton.Y);
+            gamepadButtons.Add(7, EButton.RFirst);
+            gamepadButtons.Add(9, EButton.RSecond);
+            gamepadButtons.Add(6, EButton.LFirst);
+            gamepadButtons.Add(8, EButton.LSecond);
+            gamepadButtons.Add(10, EButton.Select);
+            gamepadButtons.Add(11, EButton.Start);
+
+            var gamepadDirectionButtons = new Dictionary<int, EButton>();
+            gamepadDirectionButtons.Add(0, EButton.Up);
+            gamepadDirectionButtons.Add(9000, EButton.Right);
+            gamepadDirectionButtons.Add(18000, EButton.Down);
+            gamepadDirectionButtons.Add(27000, EButton.Left);
+
+            var gamepad = new GamepadSettings()
+            {
+                MinLength = 10000,
+                MaxLenght = 50000,
+                Buttons = gamepadButtons,
+                DirectionButtons = gamepadDirectionButtons
+            };
+            return new Settings(keys, levels, leftStick, rightStick, gamepad);
         }
 
         private static List<KeyItem> GetDefaultKeyItems(List<LevelToInputState> levels, List<StickSector> leftStick,
@@ -93,7 +118,7 @@ namespace TyperPad.Common.Helper
                         continue;
 
                     var angle = GetAngleByPosition(i, j);
-                    if (angle==null)
+                    if (angle == null)
                         continue;
 
                     var stick = stickSectors.SingleOrDefault(p => angle.IsBetween(p.MinAngle, p.MaxAngle));
@@ -142,7 +167,6 @@ namespace TyperPad.Common.Helper
                 Level = new Level(0),
                 Buttons = new List<EButton>()
                 {
-                    
                 }
             });
             levelToInputState.Add(new LevelToInputState()
@@ -177,10 +201,9 @@ namespace TyperPad.Common.Helper
         {
             var angles = new Angle[,]
             {
-                {new Angle(315), new Angle(0), new Angle(45) },
+                {new Angle(315), new Angle(0), new Angle(45)},
                 {new Angle(270), null, new Angle(90)},
                 {new Angle(225), new Angle(180), new Angle(135)},
-
             };
 
             if (row > angles.GetUpperBound(0) + 1 || column > angles.GetUpperBound(1) + 1)
