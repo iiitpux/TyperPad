@@ -17,6 +17,8 @@ namespace TyperPad.Common.Enum
         Up = 8,
         Down = 9,
         Left = 10,
-        Right = 11
+        Right = 11,
+        Select = 12,
+        Start = 13
     }
 }

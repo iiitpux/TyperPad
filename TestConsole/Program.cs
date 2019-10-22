@@ -12,7 +12,7 @@ namespace TestConsole
     {
         static void Main(string[] args)
         {
-            var service = new Service(new InputService(),  new OutputService(), null);
+            var service = new Service(new InputService(),  new FakeOutputService(), new FakeDataStoreService());
             service.Init();
             service.Run();
             Console.ReadLine();

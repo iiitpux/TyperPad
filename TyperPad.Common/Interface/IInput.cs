@@ -8,7 +8,16 @@ namespace TyperPad.Common.Interface
 {
     public interface IInput
     {
-        void Init();
-        InputState GetState();
+        /// <summary>
+        /// Return gamepad guid
+        /// </summary>
+        /// <returns></returns>
+        Guid? Init();
+        InputState GetState(Settings.GamepadSettings settings);
+        
+        /// <summary>
+        /// Return state for fill settings
+        /// </summary>
+        InputRawState GetRawState();
     }
 }

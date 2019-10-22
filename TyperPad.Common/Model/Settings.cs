@@ -12,15 +12,17 @@ namespace TyperPad.Common.Model
         public List<LevelToInputState> Levels { private set; get; }
         public List<StickSector> LeftStick { private set; get; }
         public List<StickSector> RightStick { private set; get; }
+        public GamepadSettings Gamepad { private set; get; }
 
         public Settings(List<KeyItem> keys, List<LevelToInputState> levels, List<StickSector> leftStick,
-            List<StickSector> rightStick)
+            List<StickSector> rightStick, GamepadSettings gamepad)
         {
             Keys = keys.Where(p=>!p.Key.IsModificator).ToList();
             ModificatorKeys = keys.Where(p=>p.Key.IsModificator).ToList();
             Levels = levels;
             LeftStick = leftStick;
             RightStick = rightStick;
+            Gamepad = gamepad;
         }
 
         public class KeyItem
@@ -50,7 +52,6 @@ namespace TyperPad.Common.Model
             }
         }
 
-
         public class StickSector
         {
             public Guid Id { set; get; }
@@ -75,6 +76,14 @@ namespace TyperPad.Common.Model
             public Level Level { set; get; }
             public Guid? StickSectorId { set; get; }
             public List<EButton> Buttons { set; get; } = new List<EButton>();
+        }
+
+        public class GamepadSettings
+        {
+            public int MinLength { set; get; }
+            public int MaxLenght { set; get; }
+            public Dictionary<int, EButton> Buttons { set; get; }
+            public Dictionary<int, EButton> DirectionButtons { set; get; }
         }
     }
 }
