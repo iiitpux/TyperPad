@@ -11,6 +11,7 @@
       <ProjectReference Include="..\TyperPad.Fake\TyperPad.Fake.csproj" />
       <ProjectReference Include="..\TyperPad.InputSimulatorOutput\TyperPad.InputSimulatorOutput.csproj" />
       <ProjectReference Include="..\TyperPad.SharpDxInput\TyperPad.SharpDxInput.csproj" />
+      <ProjectReference Include="..\TyperPad.SqliteDataStore\TyperPad.SqliteDataStore.csproj" />
     </ItemGroup>
 
 </Project>

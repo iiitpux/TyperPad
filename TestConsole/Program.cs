@@ -1,8 +1,10 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
 using TyperPad.Core;
 using TyperPad.Fake;
 using TyperPad.InputSimulatorOutput;
 using TyperPad.SharpDxInput;
+using TyperPad.SqliteDataStore.Dto;
 
 namespace TestConsole
 {
@@ -15,7 +17,6 @@ namespace TestConsole
             service.Run();
             Console.ReadLine();
             service.Stop();
-            
         }
     }
 }
